@@ -1,0 +1,16 @@
+{
+    "name": "gab88slash/composer-one",
+    "description": "Primo esercizio composer",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "gab88slash",
+            "email": "consigliog@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "monolog/monolog": "^1.17"
+    }
+}

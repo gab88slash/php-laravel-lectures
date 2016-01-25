@@ -1,7 +1,9 @@
 # 02 - Laravel
 
 Laravel è la nuova stella dei framework PHP. Supporta il paradigma MVC e molti altri. Ha inoltre un sistema di templating
-per aiutare a generare le viste in maniera pulita e modulare
+per aiutare a generare le viste in maniera pulita e modulare.
+
+Inoltre iniziamo a maneggiare con i file di configurazione dell'ambiente.
 
 Con questi esercizi cerchiamo di approcciarci al framework iniziando ad interagire con le componenti principali:
 
@@ -168,3 +170,6 @@ la parola chiave parent permette di accedere al contenuto del layout padre
     
 permette di includere una sottovista
 
+## Configurazione
+
+env('NOME_COSTANTE','valore default');

@@ -103,7 +103,7 @@ if(isset($log_text) && $log_text != "") $log->debug("Log Usando extract per gli 
 
 
 /*
- * Questo codice è completamente copiato dalla documentazione per inizializzare l'oggetto richiesta
+ * Questo codice è completamente copiato dalla documentazione per inizializzare l'oggetto Request
  */
 use Symfony\Component\HttpFoundation\Request;
 

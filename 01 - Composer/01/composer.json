@@ -11,6 +11,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "monolog/monolog": "^1.17"
+        "monolog/monolog": "^1.17",
+        "symfony/http-foundation": "^3.0"
     }
 }

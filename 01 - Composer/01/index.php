@@ -88,7 +88,7 @@ if(isset($log_text) && $log_text != "") $log->debug("Log Usando extract per gli 
  */
 
 /*
- * La librearia viene automaticamente inserita nel nostro autoload
+ * La libreria viene automaticamente inserita nel nostro autoload
  *
  * Passiamo ad analizzare la documentazione che potete trovare cercando Symfony HttpFoundation Component su Google
  *
@@ -130,7 +130,7 @@ $request = Request::createFromGlobals();
       public function get($key, $default = null)
  */
 
-$log->debug('Log con Synfony/HttpFoundation'.$request->get('log_text','Non è stato inserito alcun input'));
+$log->debug('Log con Symfony/HttpFoundation'.$request->get('log_text','Non è stato inserito alcun input'));
 
 
 ?>

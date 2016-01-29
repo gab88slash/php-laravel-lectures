@@ -1,0 +1,17 @@
+{
+    "name": "gab88slash/composer02",
+    "description": "esercizio su composer con i csv",
+    "require": {
+        "league/csv": "^8.0",
+        "symfony/http-foundation": "^3.0",
+        "monolog/monolog": "^1.17",
+        "illuminate/support": "^5.2",
+        "nesbot/carbon": "^1.21"
+    },
+    "authors": [
+        {
+            "name": "gab88slash",
+            "email": "consigliog@gmail.com"
+        }
+    ]
+}

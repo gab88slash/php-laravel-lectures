@@ -25,23 +25,44 @@ if (!ini_get("auto_detect_line_endings")) {
 }
 use League\Csv\Writer;
 use League\Csv\Reader;
-
+/*
+ * Creo un Writer Csv in scrittura in modalità append (non cancello le cose vecchie)
+ */
 $writer = Writer::createFromFileObject(new SplFileObject('file.csv','a+'));
 
 use Symfony\Component\HttpFoundation\Request;
 
+/*
+ * Creo una richiesta dalle globali
+ */
 $request = Request::createFromGlobals();
 
-
+/*
+ * controllo che esistano i dati
+ */
 if(
     $request->request->has('giorno') && $request->request->get('giorno') != "" &&
     $request->request->has('gara') && $request->request->get('gara') != "")
 {
+    /*
+     * la checkbox se è falsa non viene inviata
+     *
+     * ci sono soluzioni migliori?
+     */
     if(!$request->request->has('finale')) $finale = 0;
     else $finale = 1;
+
+    /*
+     * inserisco una nuova riga csv
+     */
     $writer->insertOne([$request->request->get('giorno'), $request->request->get('gara'), $finale]);
 }
 
+/*
+ * il ritorno sono tutte le righe del csv ordinate per giorno
+ *
+ * Vedere esercizio 03
+ */
 $reader = Reader::createFromFileObject(new SplFileObject('file.csv'));
 $results = iterator_to_array($reader->fetchAssoc(0),false);
 
@@ -51,10 +72,8 @@ use Illuminate\Support\Collection;
 
 $collezione = new Collection($results);
 
-$collezione = $collezione->keyBy('giorno');
-
 $collezione->sortBy(function ($item,$key) {
-    $data = \Carbon\Carbon::createFromFormat('d/m/y',$key);
+    $data = \Carbon\Carbon::createFromFormat('d/m/y',$item['giorno']);
 
     return $data->timestamp;
 });

@@ -1,0 +1,60 @@
+---
+  - name: Easy Dev Configuration for Laravel with Ansible
+    hosts: all
+    sudo: True
+    #or
+    #tasks:
+    #or
+    roles:
+      #Install and configure apache
+      - role: geerlingguy.apache
+        apache_vhosts_filename: laravelHost.conf
+        apache_remove_default_vhost: true
+        apache_vhosts:
+          - servername: localhost
+            documentroot: "/vagrant/"
+      #Install mysql and configure it with basic settings
+      # plus a db and a user with privileges on that db
+      - role: geerlingguy.mysql
+        mysql_databases:
+          - name: crowfooding
+        mysql_users:
+          - name: local
+            password: local
+            priv: project.*:ALL
+    # Install php and package needed by debian based distribution
+      - role: geerlingguy.php
+        php_packages:
+          - php5
+          - php5-common
+          - php5-mcrypt
+          - php5-curl
+          - php5-gd
+      - role: ssachtleben.apache-mcrypt
+      # Install e configure phpmyadmin
+      - role: geerlingguy.phpmyadmin
+      # Install composer
+      - role: geerlingguy.nodejs
+        nodejs_version: "0.12"
+        nodejs_npm_global_packages:
+          - name: bower
+          - name: grunt
+          - name: grunt-cli
+          # Install composer
+      - role: geerlingguy.composer
+    tasks:
+    #http://jeremykendall.net/2013/08/09/vagrant-synced-folders-permissions/
+      - name: Change Apache User and group
+        sudo: True
+        replace: >
+          dest=/etc/apache2/envvars
+          regexp="^(export APACHE_RUN_(USER|GROUP)=)www-data"
+          replace="\1vagrant"
+          backup=yes
+        notify: restart apache
+      - name: Change owner of apache.lock
+        sudo: True
+        file: >
+          path="/var/lock/apache2"
+          owner=vagrant
+          group=www-data

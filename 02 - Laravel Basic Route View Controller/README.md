@@ -51,6 +51,20 @@ Crea un nuovo progetto laravel
     
 Aggiunge una rotta nella nostra applicazione
 
+### Request
+
+    use Request;
+
+    $input = Request::all();
+    
+    $input_con_solo_myvar = Request::only(['myvar]);
+    
+    $input_senza_myvar = Request::except(['myvar]);
+    
+Estrae dai parametri Post/Get/Body. 
+
+Ritorna tutti gli input nella richiesta
+
 ###  Views
 
     view('cartella.vista')

@@ -49,5 +49,6 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'project',
         'uses' => 'ControllerProgetto@index'
     ]);
+    Route::get('/article','ControllerArticoli@show');
 
 });

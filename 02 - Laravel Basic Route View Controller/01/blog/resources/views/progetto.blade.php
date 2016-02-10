@@ -25,6 +25,9 @@
     @empty
         <li>Non ci sono eroi</li>
     @endforelse
+
+    <ul class="alert alert-error"></ul>
+    <li></li>
 </ul>
 </body>
 </html>
